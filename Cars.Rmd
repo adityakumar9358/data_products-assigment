@@ -1,0 +1,31 @@
+---
+title: "Car Data"
+author: "Alex Vollmer"
+date: "November 5, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Understanding Gas Mileage
+
+Using the `mtcars` dataset we plot can attempt to understand the relationship
+of various factors to gas mileage (`mpg`).
+
+We plot weight (`wt`) vs. mileage (`mpg`) spatially along the x/y axes. We 
+visualize the number of cylinders (`cyl`) as colors and the amount of
+horsepower (`hp`) as the size of an individual point in the plot.
+
+## Visualizing the Data
+
+```{r plot, echo=FALSE}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(data = mtcars, x = ~wt, y = ~mpg, 
+        color = ~as.factor(cyl), size = ~hp,
+        text = ~paste("Weight: ", wt, '<br>MPG:', mpg),
+        type = "scatter", mode = "markers") %>%
+  layout(title = "Car Data")
+```
+
